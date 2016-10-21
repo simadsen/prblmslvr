@@ -1,2 +1,5 @@
-console.log('hello');
-console.log('there!');
+function main() {
+
+}
+
+$(document).ready(main);
