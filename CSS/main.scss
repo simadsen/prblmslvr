@@ -1,7 +1,45 @@
-$bg-color: red;
+
+/* COLORS */
+$bg-color: #ecf0f1;
 $primary-color: #6fb5e4;
 $secondary-color: #ffbd44;
+$smart-width: 800px;
+
+/* FONTS */
 
 body {
   background-color: $bg-color;
+}
+
+.menu {
+  ul {
+  	width: $smart-width;
+  	height: 150px;
+  	margin: 0px auto;
+  	list-style-type: none;
+    display: block;
+    li {
+      padding: 0px 0px 0px 30px;
+    	display: inline;
+    }
+    .menu-items {
+      float: right;
+      i {
+        font-size: 0.75em;
+      }
+    }
+    /* SELECT FIRST MENU ITEM (HOME) */
+    :first-child {
+      padding: 0px;
+    }
+    /* SELECT ALL THE OTHER MENU ITEMS */
+    :nth-child(n+2) {
+
+
+    }
+  }
+}
+
+.deck {
+  display: block;
 }
