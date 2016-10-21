@@ -2,21 +2,23 @@
 <head>
   <meta charset="UTF-8">
   <title>Boost My Brainstorm</title>
-  <link rel="stylesheet" type="text/css" href="styles/main.min.css">
+  <link rel="stylesheet" type="text/css" href="css/main.min.css">
 </head>
 
 <body>
 <header>
   <div class="menu">
     <ul>
-      <li><img src="http://www.hsdtaxlaw.com/wp-content/uploads/2016/05/logo_placeholder.png" style="width: 85px;" /></li>
+      <li>Home</li>
+      <span class="menu-items">
       <li>Brainstorm Boosters</li>
       <li>About</li>
-      <li>Donate</li>
+      <li>Donate <i class="fa fa-heart-o" aria-hidden="true"></i></li>
+      </span>
     </ul>
   </div>
 </header>
-
+<div id="main-content-wrapper">
 <section class="deck">
   <ul>
     <li>
@@ -36,17 +38,17 @@
     </li>
   </ul>
 </section>
-<section class="nav">
-    <ul class="controls">
-    <li><a href="">Previous</a></li>
-    <li><a href="">Next</a></li>
+<section class="controls">
+    <ul class="nav">
+      <li><a class="button-prev" href="">Previous</a></li>
+      <li><a class="button-next" href="">Next</a></li>
     </ul>
 </section>
 <footer>
-  <p></p>
-  <p></p>
-  <p></p>
 </footer>
+</div> <!-- MAIN CONTENT WRAPPER END -->
+<!-- SCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script src="js/main.js"></script>
+<script src="https://use.fontawesome.com/c0e243db7e.js"></script>
 </body>
