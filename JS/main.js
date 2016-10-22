@@ -1,24 +1,51 @@
 function main() {
   $('.deck > ul > li').hide();
-  var currentDeck = "";
   var deckCount = countCardsInDeck();
-  var activeCard = 0;
+  var activeCard = 1;
 
-  function countCardsInDeck (){
+  function countCardsInDeck () {// # of list-items in .deck
     return document.querySelectorAll(".deck > ul > li").length;
   };
 
-  function navigateCards () {
-
+  function showActiveCard (cardNumber) {
+    $( ".deck > ul > li:nth-child("+cardNumber+")" ).show();
   };
 
-  function showActiveCard (){
+  function changeActiveCard () {
+    $('.next').on('click', function() {
+        $( ".deck > ul > li:nth-child("+activeCard+")" ).hide();
+        activeCard++;
+        checkForEndOfDeck();
+        console.log("active card: "+activeCard)
+        showActiveCard (activeCard);
+    });
+    $('.prev').on('click', function() {
+        $( ".deck > ul > li:nth-child("+activeCard+")" ).hide();
+        activeCard--;
+        checkForEndOfDeck();
+        console.log("active card: "+activeCard)
+        showActiveCard (activeCard);
+    });
+  }
 
-  };
+    function checkForEndOfDeck () {
+      if (activeCard > deckCount) {
+        activeCard = 1;
+        console.log("User reached END. Start set to START.")
+      } else if (activeCard < 1) {
+        activeCard = deckCount;
+        console.log("User reached START. Card set to END.")
+      }
+    };
 
-  console.log("Number of cards: "+deckCount);
-  console.log("Active card: "+activeCard);
+showActiveCard (activeCard);
+changeActiveCard ();
 
-}
+
+console.log("Number of cards in deck: "+deckCount);
+console.log("active card: "+activeCard);
+
+};
+
 
 $(document).ready(main);
