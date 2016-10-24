@@ -1,48 +1,52 @@
 function main() {
   $('.deck > ul > li').hide();
   var deckCount = countCardsInDeck();
-  var activeCard = 1;
+  var activeCardNumber = 1;
+
+  function cardVisibility (cardNumber, visibility) {
+    if (visibility === 'show') {
+      $( ".deck > ul > li:nth-child("+cardNumber+")" ).show();
+    } else if (visibility === 'hide') {
+      $( ".deck > ul > li:nth-child("+cardNumber+")" ).hide();
+    }
+  }
 
   function countCardsInDeck () {// # of list-items in .deck
     return document.querySelectorAll(".deck > ul > li").length;
   };
 
-  function showActiveCard (cardNumber) {
-    $( ".deck > ul > li:nth-child("+cardNumber+")" ).show();
-  };
-
   function changeActiveCard () {
     $('.next').on('click', function() {
-        $( ".deck > ul > li:nth-child("+activeCard+")" ).hide();
-        activeCard++;
+        cardVisibility (activeCardNumber, 'hide');
+        activeCardNumber++;
         checkForEndOfDeck();
-        showActiveCard (activeCard);
-        console.log("active card: "+activeCard)
+        cardVisibility (activeCardNumber, 'show');
+        console.log("active card: "+activeCardNumber);
     });
     $('.prev').on('click', function() {
-        $( ".deck > ul > li:nth-child("+activeCard+")" ).hide();
-        activeCard--;
+        cardVisibility (activeCardNumber, 'hide');
+        activeCardNumber--;
         checkForEndOfDeck();
-        showActiveCard (activeCard);
-        console.log("active card: "+activeCard)
+        cardVisibility (activeCardNumber, 'show');
+        console.log("active card: "+activeCardNumber);
     });
   }
 
     function checkForEndOfDeck () {
-      if (activeCard > deckCount) {
-        activeCard = 1;
+      if (activeCardNumber > deckCount) {
+        activeCardNumber = 1;
         console.log("User reached END. Card set to START.")
-      } else if (activeCard < 1) {
-        activeCard = deckCount;
+      } else if (activeCardNumber < 1) {
+        activeCardNumber = deckCount;
         console.log("User reached START. Card set to END.")
       }
     };
 
-showActiveCard (activeCard);
+cardVisibility (activeCardNumber, 'show');
 changeActiveCard ();
 
 console.log("Number of cards in deck: "+deckCount);
-console.log("active card: "+activeCard);
+console.log("active card: "+activeCardNumber);
 
 };
 
