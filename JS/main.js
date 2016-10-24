@@ -16,15 +16,15 @@ function main() {
         $( ".deck > ul > li:nth-child("+activeCard+")" ).hide();
         activeCard++;
         checkForEndOfDeck();
-        console.log("active card: "+activeCard)
         showActiveCard (activeCard);
+        console.log("active card: "+activeCard)
     });
     $('.prev').on('click', function() {
         $( ".deck > ul > li:nth-child("+activeCard+")" ).hide();
         activeCard--;
         checkForEndOfDeck();
-        console.log("active card: "+activeCard)
         showActiveCard (activeCard);
+        console.log("active card: "+activeCard)
     });
   }
 

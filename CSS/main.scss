@@ -22,16 +22,19 @@
 
 // MENU STYLING MIXINS
 @mixin menu-styling-mobile {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   width: 100%;
   ul {
-    background-color: $secondary-color;
-    height: 70px;
     li {
+      background-color: $darkclouds;
       float: left;
       color: white;
       width: 25%;
+      text-align: center;
+      display: inline-block;
+      padding: 20px 0px 15px 0px;
+      text-transform: lowercase;
     }
   }
   @content;
@@ -39,6 +42,14 @@
 
 @mixin menu-styling-desktop ($white-space-top, $white-space-bottom, $menu-item-whitespace) {
   ul {
+    @media (max-width: #{$desktop-width + 50px}) {
+      li:first-child {
+        margin-left: 20px;
+      }
+      li:last-child {
+        margin-right: 20px;
+      }
+    }
     .menu-items {
       float: right;
       li {
@@ -52,7 +63,7 @@
 
 
 // COLORS
-$light-text-color: black;
+$darkclouds: #3c4b4f;
 $text-color: grey;
 $inverted-text-color: white;
 $bg-color: #ecf0f1;
@@ -61,8 +72,8 @@ $secondary-color: #ffbd44;
 
 // RESPONSIVE
 $mobile-width: 400px;
-$tablet-width: 680px;
-$desktop-width: 920px;
+$tablet-width: 540px;
+$desktop-width: 800px;
 
 // FONTS
 
@@ -74,7 +85,7 @@ body {
 }
 
 .menu {
-  // SCREEN SIZE DECLARATIONS
+  // SCREEN SIZE DEPENDENT .menu STYLING
   @include mobile {
     @include menu-styling-mobile {
       ul li:last-child {
@@ -87,23 +98,22 @@ body {
   @include tablet {
     width: $tablet-width;
     margin: auto;
-    @include menu-styling-desktop (30px, 70px, 45px) {
-      ul li:first-child {
-        margin-left: 15px;
-      }
+    @include menu-styling-mobile {
       ul li:last-child {
-        margin-right: 15px;
+        i {
+          display: none;
+        }
       }
-
     }
   }
   @include desktop {
-    width: $tablet-width;
+    width: $desktop-width;
     margin: auto;
     @include menu-styling-desktop (60px, 120px, 45px) {
     }
   }
-  // GLOBAL DECLARATIONS
+
+  // GLOBAL .menu STYLING
   ul {
   	list-style-type: none;
     display: block;
@@ -119,12 +129,12 @@ body {
 }
 
 .deck {
-  @include desktop {
+  @include tablet {
     width: $tablet-width;
     margin: auto;
   }
-  @include tablet {
-    width: $tablet-width;
+  @include desktop {
+    width: $desktop-width;
     margin: auto;
   }
   border: 1px solid red;
@@ -141,7 +151,7 @@ body {
 
 .controls {
   @include desktop {
-    width: $tablet-width;
+    width: $desktop-width;
     margin: auto;
   }
   @include tablet {
