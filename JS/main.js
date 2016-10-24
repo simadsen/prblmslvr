@@ -1,36 +1,36 @@
 function main() {
-  $('.deck > ul > li').hide();
+  $('.deck > ul > li').hide(); // Hide all cards
   var deckCount = countCardsInDeck();
   var activeCardNumber = 1;
 
-  function cardVisibility (cardNumber, visibility) {
-    if (visibility === 'show') {
+  function countCardsInDeck () {
+    return document.querySelectorAll(".deck > ul > li").length;
+  };
+
+  function cardVisibility (cardNumber, visible) {
+    if (visible === true) {
       $( ".deck > ul > li:nth-child("+cardNumber+")" ).show();
-    } else if (visibility === 'hide') {
+    } else if (visible === false) {
       $( ".deck > ul > li:nth-child("+cardNumber+")" ).hide();
     }
-  }
-
-  function countCardsInDeck () {// # of list-items in .deck
-    return document.querySelectorAll(".deck > ul > li").length;
   };
 
   function changeActiveCard () {
     $('.next').on('click', function() {
-        cardVisibility (activeCardNumber, 'hide');
+        cardVisibility (activeCardNumber, false);
         activeCardNumber++;
         checkForEndOfDeck();
-        cardVisibility (activeCardNumber, 'show');
+        cardVisibility (activeCardNumber, true);
         console.log("active card: "+activeCardNumber);
     });
     $('.prev').on('click', function() {
-        cardVisibility (activeCardNumber, 'hide');
+        cardVisibility (activeCardNumber, false);
         activeCardNumber--;
         checkForEndOfDeck();
-        cardVisibility (activeCardNumber, 'show');
+        cardVisibility (activeCardNumber, true);
         console.log("active card: "+activeCardNumber);
     });
-  }
+  };
 
     function checkForEndOfDeck () {
       if (activeCardNumber > deckCount) {
@@ -42,7 +42,7 @@ function main() {
       }
     };
 
-cardVisibility (activeCardNumber, 'show');
+cardVisibility (activeCardNumber, true);
 changeActiveCard ();
 
 console.log("Number of cards in deck: "+deckCount);

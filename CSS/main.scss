@@ -1,6 +1,23 @@
 // PARTIALS
 @import "partials/_reset.scss";
 
+// FONT IMPORTS
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700');
+
+// COLORS
+$darkclouds: #3c4b4f;
+$deepnight: #232d33;
+$concrete: #95a5a6;
+$inverted-text-color: #ecf0f1;
+$bg-color: #ecf0f1;
+$primary-color: #3498db;
+$secondary-color: #ffbd44;
+
+// RESPONSIVE
+$mobile-width: 400px;
+$tablet-width: 540px;
+$desktop-width: 800px;
+
 // RESPONSIVE MIXINS
 @mixin mobile {
   @media (min-width: #{$mobile-width}) and (max-width: #{$tablet-width - 1px}) {
@@ -29,7 +46,7 @@
     li {
       background-color: $darkclouds;
       float: left;
-      color: white;
+      color: $inverted-text-color;
       width: 25%;
       text-align: center;
       display: inline-block;
@@ -54,6 +71,39 @@
       float: right;
       li {
         padding: 0px 0px 0px $menu-item-whitespace;
+        a {
+          font-size: 15px;
+          text-transform: uppercase;
+          letter-spacing: 0.075em;
+          font-weight: 400;
+          position: relative;
+          color: $darkclouds;
+          text-decoration: none;
+          -webkit-transition: all  0.3s ease-in-out 0s;
+          transition: all 0.3s ease-in-out 0s;
+          &:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -8px;
+            left: 0;
+            background-color: $primary-color;
+            visibility: hidden;
+            -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+            -webkit-transition: all 0.3s ease-in-out 0s;
+            transition: all 0.3s ease-in-out 0s;
+          }
+          &:hover {
+            color: $deepnight;
+          }
+          &:hover:before {
+            visibility: visible;
+            -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+          }
+        }
       }
     }
     margin: $white-space-top auto $white-space-bottom auto;
@@ -61,27 +111,10 @@
   @content;
 }
 
-
-// COLORS
-$darkclouds: #3c4b4f;
-$text-color: grey;
-$inverted-text-color: white;
-$bg-color: #ecf0f1;
-$primary-color: #6fb5e4;
-$secondary-color: #ffbd44;
-
-// RESPONSIVE
-$mobile-width: 400px;
-$tablet-width: 540px;
-$desktop-width: 800px;
-
-// FONTS
-
-// DOM STRUCTURE
-
-
 body {
   background-color: $bg-color;
+  font-family: 'Open Sans', 'Roboto', sans-serif;
+
 }
 
 .menu {
@@ -109,10 +142,15 @@ body {
   @include desktop {
     width: $desktop-width;
     margin: auto;
-    @include menu-styling-desktop (60px, 120px, 45px) {
+    @include menu-styling-desktop (62px, 100px, 45px) {
     }
   }
-
+  svg.logo {
+    display: inline-block;
+    width: 40px;
+    position: relative;
+    bottom: 5px;
+  }
   // GLOBAL .menu STYLING
   ul {
   	list-style-type: none;
@@ -122,7 +160,11 @@ body {
     }
     .menu-items {
       i {
-        font-size: 0.75em;
+        font-size: 0.85em;
+        margin-left: 5px;
+        position: relative;
+        bottom: 1px;
+        font-weight: 700;
       }
     }
   }
@@ -137,10 +179,19 @@ body {
     width: $desktop-width;
     margin: auto;
   }
-  border: 1px solid red;
   ul {
     li {
       h2 {
+        font-family: 'Open Sans Condensed', sans-serif;
+        font-weight: 300;
+        font-size: 36px;
+        color: $darkclouds;
+        &:before {
+          content: "# ";
+          color: $concrete;
+          font-weight: 300;
+
+        }
       }
       img {
         width: 100%;
