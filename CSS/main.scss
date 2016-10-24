@@ -13,7 +13,7 @@ $bg-color: #ecf0f1;
 $primary-color: #3498db;
 $secondary-color: #ffbd44;
 
-// RESPONSIVE
+// RESPONSIVE VARIABLES
 $mobile-width: 400px;
 $tablet-width: 540px;
 $desktop-width: 800px;
@@ -35,6 +35,13 @@ $desktop-width: 800px;
   @media (min-width: #{$desktop-width}) {
     @content;
   }
+}
+
+// FONTS
+%standardText {
+  font-family: 'Open Sans', 'Roboto', sans-serif;
+  line-height: 1.45em;
+  color: $deepnight;
 }
 
 // MENU STYLING MIXINS
@@ -59,14 +66,6 @@ $desktop-width: 800px;
 
 @mixin menu-styling-desktop ($white-space-top, $white-space-bottom, $menu-item-whitespace) {
   ul {
-    @media (max-width: #{$desktop-width + 50px}) {
-      li:first-child {
-        margin-left: 20px;
-      }
-      li:last-child {
-        margin-right: 20px;
-      }
-    }
     .menu-items {
       float: right;
       li {
@@ -108,13 +107,21 @@ $desktop-width: 800px;
     }
     margin: $white-space-top auto $white-space-bottom auto;
   }
+  @media (max-width: #{$desktop-width + 100px}) {
+    & {
+    width: 90%;
+    }
+  }
   @content;
 }
 
 body {
   background-color: $bg-color;
-  font-family: 'Open Sans', 'Roboto', sans-serif;
+  @extend %standardText;
+}
 
+p {
+  @extend %standardText;
 }
 
 .menu {
@@ -149,7 +156,7 @@ body {
     display: inline-block;
     width: 40px;
     position: relative;
-    bottom: 5px;
+    bottom: 10px;
   }
   // GLOBAL .menu STYLING
   ul {
@@ -185,7 +192,9 @@ body {
         font-family: 'Open Sans Condensed', sans-serif;
         font-weight: 300;
         font-size: 36px;
+        text-align: center;
         color: $darkclouds;
+        margin: 25px 0px;
         &:before {
           content: "# ";
           color: $concrete;
@@ -194,21 +203,28 @@ body {
       }
       img {
         width: 100%;
+        margin-bottom: 25px;
+      }
+      p {
+        text-align: justify;
+        width: $tablet-width;
+        margin: auto;
+        @media (max-width: #{$tablet-width + 50px}) {
+          & {
+          width: 90%;
+          }
+        }
       }
     }
   }
 }
 
 .controls {
-  @include desktop {
-    width: $desktop-width;
-    margin: auto;
-  }
-  @include tablet {
-    width: $tablet-width;
-    margin: auto;
-  }
   .nav {
+    margin: 25px 0px 90px;
+
+    text-align: center;
+    display: block;
     li {
       display: inline;
     }
