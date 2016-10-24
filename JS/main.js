@@ -31,7 +31,7 @@ function main() {
     function checkForEndOfDeck () {
       if (activeCard > deckCount) {
         activeCard = 1;
-        console.log("User reached END. Start set to START.")
+        console.log("User reached END. Card set to START.")
       } else if (activeCard < 1) {
         activeCard = deckCount;
         console.log("User reached START. Card set to END.")
@@ -41,11 +41,9 @@ function main() {
 showActiveCard (activeCard);
 changeActiveCard ();
 
-
 console.log("Number of cards in deck: "+deckCount);
 console.log("active card: "+activeCard);
 
 };
-
 
 $(document).ready(main);

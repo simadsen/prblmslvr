@@ -1,19 +1,72 @@
 // PARTIALS
 @import "partials/_reset.scss";
 
-// MIXINS
+// RESPONSIVE MIXINS
+@mixin mobile {
+  @media (min-width: #{$mobile-width}) and (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+// MENU STYLING MIXINS
+@mixin menu-styling-mobile {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  ul {
+    background-color: $secondary-color;
+    height: 70px;
+    li {
+      float: left;
+      color: white;
+      width: 25%;
+    }
+  }
+  @content;
+}
+
+@mixin menu-styling-desktop ($white-space-top, $white-space-bottom, $menu-item-whitespace) {
+  ul {
+    .menu-items {
+      float: right;
+      li {
+        padding: 0px 0px 0px $menu-item-whitespace;
+      }
+    }
+    margin: $white-space-top auto $white-space-bottom auto;
+  }
+  @content;
+}
 
 
 // COLORS
+$light-text-color: black;
+$text-color: grey;
+$inverted-text-color: white;
 $bg-color: #ecf0f1;
 $primary-color: #6fb5e4;
 $secondary-color: #ffbd44;
 
+// RESPONSIVE
+$mobile-width: 400px;
+$tablet-width: 680px;
+$desktop-width: 920px;
+
 // FONTS
 
-// RESPONSIVE
-$page-width: 800px;
-$card-width: 250px;
+// DOM STRUCTURE
 
 
 body {
@@ -21,46 +74,81 @@ body {
 }
 
 .menu {
+  // SCREEN SIZE DECLARATIONS
+  @include mobile {
+    @include menu-styling-mobile {
+      ul li:last-child {
+        i {
+          display: none;
+        }
+      }
+    }
+  }
+  @include tablet {
+    width: $tablet-width;
+    margin: auto;
+    @include menu-styling-desktop (30px, 70px, 45px) {
+      ul li:first-child {
+        margin-left: 15px;
+      }
+      ul li:last-child {
+        margin-right: 15px;
+      }
+
+    }
+  }
+  @include desktop {
+    width: $tablet-width;
+    margin: auto;
+    @include menu-styling-desktop (60px, 120px, 45px) {
+    }
+  }
+  // GLOBAL DECLARATIONS
   ul {
-  	width: $page-width;
-  	height: 150px;
-  	margin: 0px auto;
   	list-style-type: none;
     display: block;
     li {
-      padding: 0px 0px 0px 30px;
-    	display: inline;
+    	display: inline-block;
     }
     .menu-items {
-      float: right;
       i {
         font-size: 0.75em;
       }
-    }
-    // SELECT FIRST MENU ITEM (HOME)
-    :first-child {
-      padding: 0px;
-    }
-    // SELECT ALL THE OTHER MENU ITEMS
-    :nth-child(n+2) {
-
-
     }
   }
 }
 
 .deck {
-  display: block;
+  @include desktop {
+    width: $tablet-width;
+    margin: auto;
+  }
+  @include tablet {
+    width: $tablet-width;
+    margin: auto;
+  }
+  border: 1px solid red;
   ul {
     li {
+      h2 {
+      }
+      img {
+        width: 100%;
+      }
     }
   }
 }
 
 .controls {
-  display: block;
+  @include desktop {
+    width: $tablet-width;
+    margin: auto;
+  }
+  @include tablet {
+    width: $tablet-width;
+    margin: auto;
+  }
   .nav {
-
     li {
       display: inline;
     }
