@@ -40,7 +40,8 @@ $desktop-width: 800px;
 // FONTS
 %standardText {
   font-family: 'Open Sans', 'Roboto', sans-serif;
-  line-height: 1.45em;
+  line-height: 1.50em;
+  font-size: 20px;
   color: $deepnight;
 }
 
@@ -109,19 +110,30 @@ $desktop-width: 800px;
   }
   @media (max-width: #{$desktop-width + 100px}) {
     & {
-    width: 90%;
+    width: 89%;
     }
   }
   @content;
 }
 
+/*********************
+ *      DOM          *
+ *      STYLING      *
+ *********************/
+
 body {
   background-color: $bg-color;
   @extend %standardText;
+
 }
 
 p {
   @extend %standardText;
+  @include mobile {
+    & {
+      font-size: 16px;
+    }
+  }
 }
 
 .menu {
