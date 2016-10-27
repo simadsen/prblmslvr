@@ -3,6 +3,8 @@ function main() {
   var deckCount = countCardsInDeck();
   var activeCardNumber = 1;
 
+  
+
   function countCardsInDeck () {
     return document.querySelectorAll(".deck > ul > li").length;
   };
