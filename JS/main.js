@@ -2,7 +2,6 @@ function main() {
   $('.deck > ul > li').hide(); // Hide all cards
   var deckCount = countCardsInDeck();
   var activeCardNumber = 1;
-  var slushIce = 0;
 
   function countCardsInDeck () {
     return document.querySelectorAll(".deck > ul > li").length;
