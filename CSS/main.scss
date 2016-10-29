@@ -17,6 +17,8 @@ $secondary-color: #ffbd44;
 $mobile-width: 400px;
 $tablet-width: 540px;
 $desktop-width: 800px;
+$phi: 1.61803398875;
+$cardWidth: 380px;
 
 // RESPONSIVE MIXINS
 @mixin mobile {
@@ -43,6 +45,13 @@ $desktop-width: 800px;
   line-height: 1.50em;
   font-size: 20px;
   color: $deepnight;
+}
+
+%gradientMild {
+	background: #67B26F; /* fallback for old browsers */
+	background: -webkit-linear-gradient(right, #67B26F, #4ca2cd);
+	background: -o-linear-gradient(right, #67B26F, #4ca2cd);
+	background: linear-gradient(to left, #67B26F, #4ca2cd); /* Chrome 10-25, Safari 5.1-6 */ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 // MENU STYLING MIXINS
@@ -122,9 +131,9 @@ $desktop-width: 800px;
  *********************/
 
 body {
-  background-color: $bg-color;
+  background-color: $primary-color;
   @extend %standardText;
-
+  @extend %gradientMild;
 }
 
 p {
@@ -150,7 +159,7 @@ p {
   @include tablet {
     width: $tablet-width;
     margin: auto;
-    @include menu-styling-mobile {
+    @include menu-styling-desktop (31px, 50px, 30px) {
       ul li:last-child {
         i {
           display: none;
@@ -193,11 +202,19 @@ p {
   @include tablet {
     width: $tablet-width;
     margin: auto;
+    ul li p {
+      font-size: 18px;
+    }
   }
   @include desktop {
     width: $desktop-width;
     margin: auto;
   }
+  min-height: $phi * $cardWidth;
+  min-width: $cardWidth;
+  display: block;
+  background-color: $bg-color;
+  border-radius: 5px;
   ul {
     li {
       h2 {
@@ -221,9 +238,10 @@ p {
         text-align: justify;
         width: $tablet-width;
         margin: auto;
+        width: 90%;
         @media (max-width: #{$tablet-width + 50px}) {
           & {
-          width: 90%;
+
           }
         }
       }
