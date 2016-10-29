@@ -13,12 +13,21 @@ $bg-color: #ecf0f1;
 $primary-color: #3498db;
 $secondary-color: #ffbd44;
 
+%gradientMild {
+	background: #67B26F; /* fallback for old browsers */
+	background: -webkit-linear-gradient(right, #67B26F, #4ca2cd);
+	background: -o-linear-gradient(right, #67B26F, #4ca2cd);
+	background: linear-gradient(to left, #67B26F, #4ca2cd); /* Chrome 10-25, Safari 5.1-6 */ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 // RESPONSIVE VARIABLES
 $mobile-width: 400px;
 $tablet-width: 540px;
 $desktop-width: 800px;
 $phi: 1.61803398875;
 $cardWidth: 380px;
+$cardBorderRadius: 5px;
+
 
 // RESPONSIVE MIXINS
 @mixin mobile {
@@ -45,13 +54,6 @@ $cardWidth: 380px;
   line-height: 1.50em;
   font-size: 20px;
   color: $deepnight;
-}
-
-%gradientMild {
-	background: #67B26F; /* fallback for old browsers */
-	background: -webkit-linear-gradient(right, #67B26F, #4ca2cd);
-	background: -o-linear-gradient(right, #67B26F, #4ca2cd);
-	background: linear-gradient(to left, #67B26F, #4ca2cd); /* Chrome 10-25, Safari 5.1-6 */ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 // MENU STYLING MIXINS
@@ -133,7 +135,7 @@ $cardWidth: 380px;
 body {
   background-color: $primary-color;
   @extend %standardText;
-  @extend %gradientMild;
+  background-color: #d8e1e3;
 }
 
 p {
@@ -159,7 +161,7 @@ p {
   @include tablet {
     width: $tablet-width;
     margin: auto;
-    @include menu-styling-desktop (31px, 50px, 30px) {
+    @include menu-styling-desktop (28px, 32px, 30px) {
       ul li:last-child {
         i {
           display: none;
@@ -170,7 +172,7 @@ p {
   @include desktop {
     width: $desktop-width;
     margin: auto;
-    @include menu-styling-desktop (62px, 100px, 45px) {
+    @include menu-styling-desktop (48px, 65px, 45px) {
     }
   }
   svg.logo {
@@ -199,8 +201,13 @@ p {
 }
 
 .deck {
+  @include mobile {
+    box-shadow: none;
+    border-radius: 0px;
+  }
   @include tablet {
     width: $tablet-width;
+    height: $phi*$mobile-width;
     margin: auto;
     ul li p {
       font-size: 18px;
@@ -208,12 +215,23 @@ p {
   }
   @include desktop {
     width: $desktop-width;
+    height: (1/$phi) * $desktop-width;
+    display: block;
     margin: auto;
+    ul li {
+      img {
+          min-height: (1-(1/$phi))*$desktop-width;
+      }
+      h2 {
+        text-align: left !important;
+        margin: 20px 0px 10px 5% !important;
+      }
+    }
   }
-  min-height: $phi * $cardWidth;
-  min-width: $cardWidth;
+
   display: block;
   background-color: $bg-color;
+  box-shadow: 0px 1px 3px #95a5a6;
   border-radius: 5px;
   ul {
     li {
@@ -231,13 +249,16 @@ p {
         }
       }
       img {
-        width: 100%;
+        max-width: 100%;
+        display: flex;
         margin-bottom: 25px;
+        margin: auto;
+        overflow: hidden;
       }
       p {
         text-align: justify;
-        width: $tablet-width;
         margin: auto;
+        overflow: hidden !important;
         width: 90%;
         @media (max-width: #{$tablet-width + 50px}) {
           & {
