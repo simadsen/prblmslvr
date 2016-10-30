@@ -28,6 +28,8 @@ $desktop-width: 920px;
 $phi: 1.61803398875;
 $cardWidth: 380px;
 $cardBorderRadius: 5px;
+$nav-height: 80px;
+$scroll-width: 5px;
 
 
 // RESPONSIVE MIXINS
@@ -60,6 +62,19 @@ $cardBorderRadius: 5px;
    background: linear-gradient($concrete, rgba(149, 165, 166, 0));
    -webkit-box-orient: vertical;
    -webkit-background-clip: text;
+   -webkit-transition: all 0.3s ease-in-out 0s;
+   transition: all 0.3s ease-in-out 0s;
+   &.showOverflow {
+     overflow: visible;
+     display: normal !important;
+     max-height: none !important;
+     -webkit-text-fill-color: $darkclouds;
+     background: none;
+     -webkit-box-orient: vertical;
+     -webkit-transition: all 0.3s ease-in-out 0s;
+     transition: all 0.3s ease-in-out 0s;
+     margin-bottom: $nav-height;
+   }
    @content;
 }
 
@@ -227,7 +242,9 @@ p {
     height: $phi*$mobile-width;
     margin: auto;
     ul li p {
-      @include hideOverflow (9.0em) {}
+      @include hideOverflow (9.0em) {
+
+      }
       font-size: 22px;
     }
     ul li img {
@@ -243,19 +260,23 @@ p {
     height: (1/$phi) * $desktop-width;
     display: block;
     margin: auto;
-    ul li {
-      img {
+    ul {
+      li {
+        img {
           height: (1-(1/$phi))*$desktop-width;
           padding-top: 10px !important;
-      }
-      h2 {
-        font-size: 42px !important;
+        }
+        h2 {
+        font-size: 40px !important;
         text-align: left !important;
-        margin: 20px 0px 15px 5% !important;
-      }
-      p {
-        @include hideOverflow (4.5em) {}
-        font-size: 24px;
+        margin: 0px 0px 0px 5% !important;
+        }
+        p {
+          @include hideOverflow (4.5em) {
+
+          }
+          font-size: 22px;
+        }
       }
     }
   }
@@ -264,8 +285,23 @@ p {
   background-color: $bg-color;
   box-shadow: 0px 1px 3px #95a5a6;
   border-radius: 5px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    position: absolute;
+    width: $scroll-width;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(149, 165, 166, 0.75);
+    -webkit-box-shadow: none;
+  }
   ul {
     li {
+      position: relative;
+      left: $scroll-width;
+      overflow: hidden;
       h2 {
         font-family: 'Open Sans Condensed', sans-serif;
         font-weight: 300;
@@ -281,8 +317,6 @@ p {
         }
       }
       img {
-        -webkit-transition: all 0.3s ease-in-out 0s;
-        transition: all 0.3s ease-in-out 0s;
         max-width: 100%;
         display: flex;
         margin: auto;
@@ -304,7 +338,7 @@ p {
 
 
 .controls {
-  position: absolute;
+  position: fixed;
   bottom: 10px;
   margin: auto;
   left: 0;
@@ -320,12 +354,3 @@ p {
 }
 
 // CLASSES CALLED ON FUNCTIONS
-.showOverflow {
-  overflow: scroll;
-  display: -webkit-box !important;
-  background-color: $concrete !important;
-  -webkit-transition: all 0.3s ease-in-out 0s;
-  transition: all 0.3s ease-in-out 0s;
-  -webkit-box-orient: vertical;
-  -webkit-background-clip: clip;
-}

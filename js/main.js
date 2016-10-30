@@ -46,10 +46,14 @@ function main() {
     function readMore () {
       $('.readmore').on('click', function() {
         console.log("Read More clicked");
-        $( ".deck > ul > li > p" ).addClass('showOverflow');
-        $( ".deck > ul > li > img" ).hide();
+        $( ".deck > ul > li > p" ).toggleClass('showOverflow');
+        $( ".deck > ul > li > img" ).toggleClass('hideImage');
+        $( ".deck > ul > li > img" ).slideToggle( 200, function(){
+        });
       });
     };
+
+
 
 cardVisibility (activeCardNumber, true);
 changeActiveCard ();
