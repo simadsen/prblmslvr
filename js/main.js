@@ -1,5 +1,6 @@
 function main() {
   $('.deck > ul > li').hide(); // Hide all cards
+
   var deckCount = countCardsInDeck();
   var activeCardNumber = 1;
 
@@ -42,8 +43,17 @@ function main() {
       }
     };
 
+    function readMore () {
+      $('.readmore').on('click', function() {
+        console.log("Read More clicked");
+        $( ".deck > ul > li > p" ).addClass('showOverflow');
+        $( ".deck > ul > li > img" ).hide();
+      });
+    };
+
 cardVisibility (activeCardNumber, true);
 changeActiveCard ();
+readMore ();
 
 console.log("Number of cards in deck: "+deckCount);
 console.log("active card: "+activeCardNumber);
