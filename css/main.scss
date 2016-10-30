@@ -60,8 +60,7 @@ $cardBorderRadius: 5px;
    background: linear-gradient($concrete, rgba(149, 165, 166, 0));
    -webkit-box-orient: vertical;
    -webkit-background-clip: text;
-
-   @content
+   @content;
 }
 
 // FONTS
@@ -84,7 +83,7 @@ $lineHeight: 1.45em;
       background-color: $darkclouds;
       float: left;
       color: $inverted-text-color;
-      width: 25%;
+      width: 20%;
       text-align: center;
       display: inline-block;
       padding: 20px 0px 15px 0px;
@@ -204,10 +203,9 @@ p {
     .menu-items {
       i {
         font-size: 0.85em;
-        margin-left: 5px;
         position: relative;
         bottom: 1px;
-        font-weight: 700;
+        font-weight: 300;
       }
     }
   }
@@ -219,6 +217,10 @@ p {
     border-radius: 0px;
     ul li img {
       max-height: $mobile-width;
+      padding-top: 10px !important;
+    }
+    ul li h2 {
+      font-size: 30px !important;
     }
   }
   @include tablet {
@@ -231,6 +233,10 @@ p {
     }
     ul li img {
       height: (1/$phi)*$mobile-width;
+      padding-top: 5px !important;
+    }
+    ul li h2 {
+      font-size: 36px !important;
     }
   }
   @include desktop {
@@ -241,6 +247,7 @@ p {
     ul li {
       img {
           height: (1-(1/$phi))*$desktop-width;
+          padding-top: 10px !important;
       }
       h2 {
         font-size: 42px !important;
@@ -249,7 +256,7 @@ p {
       }
       p {
         @include hideOverflow (4.5em) {}
-        font-size: 26px;
+        font-size: 24px;
       }
     }
   }
@@ -268,8 +275,8 @@ p {
         text-align: center;
         color: $darkclouds;
         margin: 25px 0px;
-        &:before {
-          content: "# ";
+        &::before {
+          content: "";
           color: $concrete;
           font-weight: 300;
         }
@@ -277,7 +284,6 @@ p {
       img {
         max-width: 100%;
         display: flex;
-        margin-bottom: 25px;
         margin: auto;
         overflow: hidden;
       }
