@@ -7,7 +7,8 @@
 // COLORS
 $darkclouds: #3c4b4f;
 $deepnight: #232d33;
-$concrete: #95a5a6;
+$darkText: #3c4b4f;
+$concrete: rgba(149, 165, 166, 1);
 $inverted-text-color: #ecf0f1;
 $bg-color: #ecf0f1;
 $primary-color: #3498db;
@@ -48,11 +49,24 @@ $cardBorderRadius: 5px;
   }
 }
 
+%hideOverflow {
+   overflow: hidden;
+   text-overflow: clip;
+   display: -webkit-box;
+   line-height: 1.50em;     /* fallback */
+   max-height: 4.5em;      /* fallback */
+   -webkit-line-clamp: 4; /* number of lines to show */
+   -webkit-box-orient: vertical;
+   background: -webkit-linear-gradient($concrete, rgba(149, 165, 166, 0));
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+}
+
 // FONTS
 %standardText {
   font-family: 'Open Sans', 'Roboto', sans-serif;
   line-height: 1.50em;
-  font-size: 20px;
+  font-size: 22px;
   color: $deepnight;
 }
 
@@ -140,11 +154,6 @@ body {
 
 p {
   @extend %standardText;
-  @include mobile {
-    & {
-      font-size: 16px;
-    }
-  }
 }
 
 .menu {
@@ -210,7 +219,7 @@ p {
     height: $phi*$mobile-width;
     margin: auto;
     ul li p {
-      font-size: 18px;
+      font-size: 22px;
     }
   }
   @include desktop {
@@ -223,8 +232,12 @@ p {
           min-height: (1-(1/$phi))*$desktop-width;
       }
       h2 {
+        font-size: 42px !important;
         text-align: left !important;
-        margin: 20px 0px 10px 5% !important;
+        margin: 20px 0px 15px 5% !important;
+      }
+      p {
+        font-size: 26px;
       }
     }
   }
@@ -239,6 +252,7 @@ p {
         font-family: 'Open Sans Condensed', sans-serif;
         font-weight: 300;
         font-size: 36px;
+        text-transform: uppercase;
         text-align: center;
         color: $darkclouds;
         margin: 25px 0px;
@@ -256,15 +270,12 @@ p {
         overflow: hidden;
       }
       p {
+        @extend %hideOverflow;
+        font-family: 'Open Sans Condensed', sans-serif;
         text-align: justify;
         margin: auto;
         overflow: hidden !important;
         width: 90%;
-        @media (max-width: #{$tablet-width + 50px}) {
-          & {
-
-          }
-        }
       }
     }
   }
