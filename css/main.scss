@@ -22,8 +22,8 @@ $secondary-color: #ffbd44;
 
 // RESPONSIVE VARIABLES
 $mobile-width: 400px;
-$tablet-width: 540px;
-$desktop-width: 800px;
+$tablet-width: 600px;
+$desktop-width: 1080px;
 $phi: 1.61803398875;
 $cardWidth: 380px;
 $cardBorderRadius: 5px;
@@ -121,7 +121,7 @@ $cardBorderRadius: 5px;
   }
   @media (max-width: #{$desktop-width + 100px}) {
     & {
-    width: 89%;
+    width: 92%;
     }
   }
   @content;
