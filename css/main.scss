@@ -23,7 +23,7 @@ $secondary-color: #ffbd44;
 // RESPONSIVE VARIABLES
 $mobile-width: 400px;
 $tablet-width: 600px;
-$desktop-width: 1080px;
+$desktop-width: 920px;
 $phi: 1.61803398875;
 $cardWidth: 380px;
 $cardBorderRadius: 5px;
@@ -31,19 +31,19 @@ $cardBorderRadius: 5px;
 
 // RESPONSIVE MIXINS
 @mixin mobile {
-  @media (min-width: #{$mobile-width}) and (max-width: #{$tablet-width - 1px}) {
+  @media (min-width: #{$mobile-width}) and (max-width: #{$tablet-width + 29px}) {
     @content;
   }
 }
 
 @mixin tablet {
-  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+  @media (min-width: #{$tablet-width}+30) and (max-width: #{$desktop-width + 29px}) {
     @content;
   }
 }
 
 @mixin desktop {
-  @media (min-width: #{$desktop-width}) {
+  @media (min-width: #{$desktop-width + 30}) {
     @content;
   }
 }
@@ -121,7 +121,7 @@ $cardBorderRadius: 5px;
   }
   @media (max-width: #{$desktop-width + 100px}) {
     & {
-    width: 92%;
+    width: 90%;
     }
   }
   @content;
