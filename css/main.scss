@@ -300,7 +300,7 @@ p {
   ul {
     li {
       position: relative;
-      left: $scroll-width;
+      left: $scroll-width/2;
       overflow: hidden;
       h2 {
         font-family: 'Open Sans Condensed', sans-serif;
@@ -323,8 +323,7 @@ p {
         overflow: hidden;
       }
       p {
-        -webkit-transition: all 0.3s ease-in-out 0s;
-        transition: all 0.3s ease-in-out 0s;
+
         font-family: 'Open Sans Condensed', sans-serif;
         text-align: justify;
         margin: auto;
