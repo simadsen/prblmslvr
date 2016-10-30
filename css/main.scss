@@ -49,25 +49,29 @@ $cardBorderRadius: 5px;
   }
 }
 
-%hideOverflow {
+@mixin hideOverflow ($lines) {
    overflow: hidden;
-   text-overflow: clip;
-   display: -webkit-box;
-   line-height: 1.50em;     /* fallback */
-   max-height: 4.5em;      /* fallback */
-   -webkit-line-clamp: 4; /* number of lines to show */
-   -webkit-box-orient: vertical;
-   background: -webkit-linear-gradient($concrete, rgba(149, 165, 166, 0));
-   -webkit-background-clip: text;
+   display: -webkit-box !important;
+   line-height: $lineHeight;
+   max-height: $lines !important;
    -webkit-text-fill-color: transparent;
+   background: -webkit-linear-gradient($concrete, rgba(149, 165, 166, 0));
+   background: -o-linear-gradient($concrete, rgba(149, 165, 166, 0));
+   background: linear-gradient($concrete, rgba(149, 165, 166, 0));
+   -webkit-box-orient: vertical;
+   -webkit-background-clip: text;
+
+   @content
 }
 
 // FONTS
+$lineHeight: 1.45em;
+
 %standardText {
   font-family: 'Open Sans', 'Roboto', sans-serif;
-  line-height: 1.50em;
+  line-height: $lineHeight;
   font-size: 22px;
-  color: $deepnight;
+  color: $darkText;
 }
 
 // MENU STYLING MIXINS
@@ -213,13 +217,20 @@ p {
   @include mobile {
     box-shadow: none;
     border-radius: 0px;
+    ul li img {
+      max-height: $mobile-width;
+    }
   }
   @include tablet {
     width: $tablet-width;
     height: $phi*$mobile-width;
     margin: auto;
     ul li p {
+      @include hideOverflow (9.0em) {}
       font-size: 22px;
+    }
+    ul li img {
+      height: (1/$phi)*$mobile-width;
     }
   }
   @include desktop {
@@ -229,7 +240,7 @@ p {
     margin: auto;
     ul li {
       img {
-          min-height: (1-(1/$phi))*$desktop-width;
+          height: (1-(1/$phi))*$desktop-width;
       }
       h2 {
         font-size: 42px !important;
@@ -237,6 +248,7 @@ p {
         margin: 20px 0px 15px 5% !important;
       }
       p {
+        @include hideOverflow (4.5em) {}
         font-size: 26px;
       }
     }
@@ -270,7 +282,7 @@ p {
         overflow: hidden;
       }
       p {
-        @extend %hideOverflow;
+
         font-family: 'Open Sans Condensed', sans-serif;
         text-align: justify;
         margin: auto;
