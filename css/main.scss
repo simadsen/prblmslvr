@@ -336,8 +336,18 @@ p {
 
 
 .controls {
-  position: fixed;
-  bottom: 10px;
+  @include tablet {
+    width: $tablet-width;
+  }
+  @include desktop {
+    width: $desktop-width;
+  }
+  min-height: $nav-height - 20;
+  border-radius: 0px 0px 5px 5px;
+  position: relative;
+  display: block;
+  background-color: $secondary-color;
+  bottom: $nav-height - 20;
   margin: auto;
   left: 0;
   right: 0;
